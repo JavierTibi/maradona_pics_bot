@@ -25,8 +25,6 @@ Route::get('/tweetMedia', function()
 {
 
     $n = rand(1,26);
-//    $image = Storage::disk('public')->get($n.'.jpg');
-//    $uploaded_media = Twitter::uploadMedia(['media' => $image]);
     $uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path('storage/'.$n.'.jpg'))]);
 
     return Twitter::postTweet(
