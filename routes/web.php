@@ -24,7 +24,14 @@ Route::get('/', function () {
 Route::get('/tweetMedia', function()
 {
     $n = rand(1,26);
-    $uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path('storage/'.$n.'.jpg'))]);
+    $path = resource_path() . '/images/'. $n.'.jpg';
+
+    if(!File::exists($path)) {
+        return response()->json(['message' => 'Image not found.'], 404);
+    }
+
+    $uploaded_media = Twitter::uploadMedia(['media' => File::get($path)]);
+
     try {
         $response =  Twitter::postTweet(
             ['status' => '',
