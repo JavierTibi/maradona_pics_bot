@@ -23,13 +23,16 @@ Route::get('/', function () {
 
 Route::get('/tweetMedia', function()
 {
-
     $n = rand(1,26);
     $uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path('storage/'.$n.'.jpg'))]);
+    try {
+        return Twitter::postTweet(
+            ['status' => '',
+                'media_ids' => $uploaded_media->media_id_string]);
+    } catch (Exception $exception) {
+        dd(Twitter::logs());
+    }
 
-    return Twitter::postTweet(
-        ['status' => '',
-            'media_ids' => $uploaded_media->media_id_string]);
 });
 
 Route::get('/tweet', function()
