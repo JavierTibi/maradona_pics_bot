@@ -26,10 +26,14 @@ Route::get('/tweetMedia', function()
     $n = rand(1,26);
     $uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path('storage/'.$n.'.jpg'))]);
     try {
-        return Twitter::postTweet(
+        $response =  Twitter::postTweet(
             ['status' => '',
                 'media_ids' => $uploaded_media->media_id_string]);
+
+        return json_encode($response);
+
     } catch (Exception $exception) {
+        print_r($exception->getMessage());
         dd(Twitter::logs());
     }
 
