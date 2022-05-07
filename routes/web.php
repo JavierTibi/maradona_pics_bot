@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/tweetMedia', function()
 {
-    $n = rand(1,1050);
+    $n = rand(1,1082);
     $path = resource_path() . '/images/'. $n.'.jpg';
 
     if(!File::exists($path)) {
@@ -38,6 +38,7 @@ Route::get('/tweetMedia', function()
                 'media_ids' => $uploaded_media->media_id_string]);
 
         return json_encode($response);
+
 
     } catch (Exception $exception) {
         print_r($exception->getMessage());
