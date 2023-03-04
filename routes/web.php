@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/tweetMedia', function()
 {
-    $n = rand(1,1252);
+    $n = rand(1,1313);
     $path = resource_path() . '/images/'. $n.'.jpg';
 
     if(!File::exists($path)) {
