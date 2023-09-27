@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Thujohn\Twitter\Facades\Twitter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\TwitterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +48,5 @@ Route::get('/tweetMedia', function()
 
 });
 
-Route::get('/tweet', function()
-{
-    try {
-        return Twitter::postTweet(['status' => 'D10S', 'format' => 'json']);
+Route::get('/tweet', [TwitterController::class, 'tweet']);
 
-    } catch (Exception $exception) {
-        dd(Twitter::logs());
-    }
-});
