@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    laravel:
+        image: daxter1987/laravel:1.0.7
+        container_name: maradona-bot
+        ports:
+            - "8010:80"
+        volumes:
+            - .:/var/www/html

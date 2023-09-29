@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\File;
 
 class TwitterController extends Controller
 {
-    protected $connection;
+    protected TwitterOAuth $connection;
+
     public function __construct() {
         $this->connection = new TwitterOAuth(env('TWITTER_CONSUMER_KEY'), env('TWITTER_CONSUMER_SECRET'), env('TWITTER_ACCESS_TOKEN'), env('TWITTER_ACCESS_TOKEN_SECRET'));
     }
